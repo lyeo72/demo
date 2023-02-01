@@ -1,4 +1,4 @@
-package com.example.demo.springboot.domain.pots;
+package com.example.demo.springboot.domain.posts;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Pots {
+public class Posts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 해당 옵션을 추가해야지만 auto increment 가 된다.
@@ -28,7 +28,7 @@ public class Pots {
     private String author;
 
     @Builder
-    public Pots(String title, String content, String author) {
+    public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;
