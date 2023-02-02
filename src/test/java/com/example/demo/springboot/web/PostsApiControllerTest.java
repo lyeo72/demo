@@ -4,7 +4,6 @@ import com.example.demo.springboot.domain.posts.Posts;
 import com.example.demo.springboot.domain.posts.PostsRepository;
 import com.example.demo.springboot.web.dto.PostsSaveRequestDto;
 import com.example.demo.springboot.web.dto.PostsUpdateRequestDto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +93,26 @@ public class PostsApiControllerTest {
 
         assertThat(posts.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(posts.get(0).getContent()).isEqualTo(expectedContent);
+    }
+
+    @Test
+    public void Posts_조회된다() throws Exception {
+        //given
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                                                .title("title")
+                                                .content("content")
+                                                .author("author")
+                                                .build());
+
+        Long findId = savedPosts.getId();
+
+        String url = "http://localhost:" + port + "/api/v1/posts/" + findId;
+
+        //when
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+
+        //then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
 
