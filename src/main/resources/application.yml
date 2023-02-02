@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: oauth
   jpa:
     show_sql: true
     properties:
@@ -15,3 +17,4 @@ server:
   servlet:
     encoding:
       force-response: true
+
