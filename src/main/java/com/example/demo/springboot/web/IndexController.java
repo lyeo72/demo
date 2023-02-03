@@ -33,7 +33,6 @@ public class IndexController {
 
     @GetMapping("/posts/save")
     public String postSave() {
-        System.out.println("찍었다.");
         return "posts-save";
     }
 
